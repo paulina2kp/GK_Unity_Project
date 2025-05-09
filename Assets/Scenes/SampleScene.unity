@@ -479,7 +479,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 7201
+  m_ColorTemperature: 7654
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -536,6 +536,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Animator
+      value: 
+      objectReference: {fileID: 540706436}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -601,6 +609,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+--- !u!95 &540706436 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7503810348600259743, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+  m_PrefabInstance: {fileID: 540706435}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +671,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -843,7 +860,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1847727040}
   - component: {fileID: 1847727039}
-  - component: {fileID: 1847727041}
   m_Layer: 0
   m_Name: N_trawa_Krita
   m_TagString: Untagged
@@ -921,28 +937,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!95 &1847727041
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847727038}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 10acc3a1d75b39348841b1479976271c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &9137908138206704672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -951,6 +945,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Animator
+      value: 
+      objectReference: {fileID: 9137908138206704673}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -1016,6 +1018,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+--- !u!95 &9137908138206704673 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7503810348600259743, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+  m_PrefabInstance: {fileID: 9137908138206704672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
