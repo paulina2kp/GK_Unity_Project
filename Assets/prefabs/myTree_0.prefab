@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1612900704848278163}
   - component: {fileID: 6887214176013504427}
   - component: {fileID: 9146892740033006959}
-  - component: {fileID: 856585997238790280}
+  - component: {fileID: 4302766430213881918}
   - component: {fileID: 7503810348600259743}
   m_Layer: 0
   m_Name: myTree_0
@@ -163,7 +163,7 @@ CapsuleCollider:
   m_Height: 4.01
   m_Direction: 1
   m_Center: {x: -0.01, y: 1.18, z: 0}
---- !u!114 &856585997238790280
+--- !u!114 &4302766430213881918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,12 +172,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6889424515931189237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb801b28825e8349b9d2e58ee657478, type: 3}
+  m_Script: {fileID: 11500000, guid: ede244d272dc69e4fbb73c0d1df81bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   my_Player: {fileID: 0}
   my_Animator: {fileID: 7503810348600259743}
   object_life: 6
+  loot_prefab: {fileID: 1905437359107144461, guid: ef4ce96b95923f449a796856ae0f4877, type: 3}
+  loot_list:
+  - {fileID: 11400000, guid: a4d4d88defdca6c43b1a29af55969e44, type: 2}
+  - {fileID: 11400000, guid: a4d4d88defdca6c43b1a29af55969e44, type: 2}
+  - {fileID: 11400000, guid: a4d4d88defdca6c43b1a29af55969e44, type: 2}
 --- !u!95 &7503810348600259743
 Animator:
   serializedVersion: 7

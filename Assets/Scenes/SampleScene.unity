@@ -596,6 +596,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4302766430213881918, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
+    - target: {fileID: 4302766430213881918, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Animator
+      value: 
+      objectReference: {fileID: 540706436}
     - target: {fileID: 6889424515931189237, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_Name
       value: myTree_0 (1)
@@ -675,6 +683,10 @@ PrefabInstance:
       propertyPath: my_Player
       value: 
       objectReference: {fileID: 367806250}
+    - target: {fileID: 856585997238790280, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: 'loot_list.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a4d4d88defdca6c43b1a29af55969e44, type: 2}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.5
@@ -689,7 +701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.4
+      value: -3.65
       objectReference: {fileID: 0}
     - target: {fileID: 1019536129603890277, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -727,6 +739,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4302766430213881918, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
     - target: {fileID: 6889424515931189237, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_Name
       value: myTree_0 (2)
@@ -1005,6 +1021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4302766430213881918, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
+      propertyPath: my_Player
+      value: 
+      objectReference: {fileID: 367806250}
     - target: {fileID: 6889424515931189237, guid: e80f3026dbafbde4da1d3393a9bd910b, type: 3}
       propertyPath: m_Name
       value: myTree_0
