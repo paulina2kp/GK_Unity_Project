@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public float move_Speed;
 
     private Vector2 move_Input;
-    private Vector3 only_Rotation = new Vector3(0,0,0);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

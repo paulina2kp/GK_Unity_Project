@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6417914250072511037}
   - component: {fileID: 6040729345506344113}
   - component: {fileID: 3082965490345397851}
+  - component: {fileID: 8487983459454183584}
+  - component: {fileID: 3687555545626576623}
   m_Layer: 0
   m_Name: Loot_prefab
   m_TagString: Untagged
@@ -115,3 +117,39 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!136 &8487983459454183584
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905437359107144461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 1
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.06
+  m_Height: 2.5
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.24, z: 0}
+--- !u!114 &3687555545626576623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905437359107144461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca3d616fc779154098f3222f59d5797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_Player: {fileID: 0}
