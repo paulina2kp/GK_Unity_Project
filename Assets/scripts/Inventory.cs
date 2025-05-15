@@ -1,0 +1,40 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Inventory : MonoBehaviour
+{
+    public static Inventory Instance;
+    public int maxSlots = 2;
+
+    public List<ItemClass> Items = new List<ItemClass>();
+    // <ItemClass> Items = new List<ItemClass>();
+
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public bool Add(Loot item)
+    {
+        foreach (ItemClass itemClass in Items)
+        {
+            if (itemClass.loot == item)
+            {
+                itemClass.IncStackSize();
+                return true;
+            }
+        }
+
+        if (Items.Count < maxSlots)
+        {
+            Items.Add(new ItemClass(item));
+            return true;
+        }
+
+        return false;
+    }
+
+}

@@ -4,12 +4,7 @@ public class PickUp : MonoBehaviour
 {
     public GameObject my_Player;
     private bool in_Range = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
+    public Loot item;
 
     // Update is called once per frame
     void Update()
@@ -22,8 +17,21 @@ public class PickUp : MonoBehaviour
 
 
             if (Vector3.Distance(transform.position, spritePosition) < 0.5f)
-            { 
-                 Die();
+            {
+                bool added = Inventory.Instance.Add(item);
+
+                if (added)
+                {
+                    FindFirstObjectByType<UISlotsHandler>().UpdateInventorySlots();
+                    Die();
+                }
+                else
+                {
+                    Debug.Log("pelne miejsce nie ma");
+                    in_Range = false;
+                }
+
+                        
             }
         }
     }

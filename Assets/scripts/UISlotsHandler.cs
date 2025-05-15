@@ -1,0 +1,38 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UISlotsHandler : MonoBehaviour
+{
+    public Transform inventoryPanel;
+    private List<InventorySlots> slotsList = new List<InventorySlots> ();
+
+    private void Start()
+    {
+        foreach (Transform currSlot in inventoryPanel)
+        {
+            InventorySlots slotComponent = currSlot.GetComponent<InventorySlots> ();
+
+            if(slotComponent != null)
+            {
+                slotsList.Add (slotComponent);
+            }
+        }
+        UpdateInventorySlots();
+    }
+
+    public void UpdateInventorySlots()
+    {
+        for(int i = 0; i < slotsList.Count; i++)
+        {
+            if(i < Inventory.Instance.Items.Count)
+            {
+                slotsList[i].SetSlot(Inventory.Instance.Items[i]);
+            }
+            else
+            {
+                slotsList[i].ClearSlot();
+            }
+        }
+    }
+}

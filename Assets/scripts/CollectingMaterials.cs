@@ -97,6 +97,8 @@ public class CollectingMaterials : MonoBehaviour
             Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f), position.y, position.z + Random.Range(-1.5f, 1.5f));
             GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
             spawned_object.GetComponent<PickUp>().my_Player = my_Player;
+            spawned_object.GetComponent<PickUp>().item = one_item;
+            //spawned_object.GetComponent<PickUp>().test_item = one_item;
             spawn_position = new Vector3(position.x, position.y, position.z);
             spawned_object.GetComponent<SpriteRenderer>().sprite = one_item.loot_sprite;
         }
