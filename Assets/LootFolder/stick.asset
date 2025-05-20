@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e9e5189596e1c4296282c0184dd507, type: 3}
   m_Name: stick
   m_EditorClassIdentifier: 
-  loot_name: test3
+  loot_name: stick
   loot_sprite: {fileID: 506076640, guid: 74e1f453c6773ee418e78e77b944bb4c, type: 3}
   drop_chance: 80
