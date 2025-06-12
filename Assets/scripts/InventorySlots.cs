@@ -8,8 +8,14 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
 {
     public Image item_sprite;
     public TextMeshProUGUI item_number;
-    private ItemClass currentItem;
+    public ItemClass currentItem;
     public GameObject optionPanel;
+    public int index;
+
+    public ItemClass GetItem()
+    {
+        return currentItem;
+    }
     public void ClearSlot()
     {
         item_sprite.enabled = false;

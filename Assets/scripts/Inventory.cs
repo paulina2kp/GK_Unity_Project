@@ -9,8 +9,6 @@ public class Inventory : MonoBehaviour
     public int maxSlots = 2;
 
     public List<ItemClass> Items = new List<ItemClass>();
-    // <ItemClass> Items = new List<ItemClass>();
-
 
     private void Awake()
     {
@@ -37,4 +35,8 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    public void DeleteFromInventory(ItemClass itemClass)
+    {
+        Items.Remove(itemClass);
+    }
 }
