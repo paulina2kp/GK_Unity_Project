@@ -44,21 +44,26 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         {
             Debug.Log("TAK 1");
             MoveToSlot(craftSlot1);
+            FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
+            FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else if (IsPointerOverSlot(craftSlot2, eventData))
         {
             Debug.Log("TAK 2");
             MoveToSlot(craftSlot2);
+            FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
+            FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else if (IsPointerOverSlot(craftSlot3, eventData))
         {
             Debug.Log("TAK 3");
             MoveToSlot(craftSlot3);
+            FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
+            FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else
         {
             Debug.Log("TAK NIC");
-            // Nie trafi³ w ¿aden slot — wróæ na miejsce
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
         }
@@ -76,7 +81,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
         //transform.SetParent(slot);
         //transform.localPosition = Vector3.zero;
         //Debug.Log("PRZENIESIONO DO: " + slot.name);
-
+        slot.GetComponent<InventorySlots>().PrepareSlot();
         slot.GetComponent<InventorySlots>().currentItem = draggedItem;
         slot.GetComponent<InventorySlots>().item_sprite.sprite = draggedItem.loot.loot_sprite;
         //transform.localPosition = Vector3.zero;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UISlotsHandler : MonoBehaviour
 {
     public Transform inventoryPanel;
+    public Transform craftPanel;
     private List<InventorySlots> slotsList = new List<InventorySlots> ();
 
     private void Start()
@@ -33,10 +34,10 @@ public class UISlotsHandler : MonoBehaviour
             else
             {
                 slotsList[i].ClearSlot();
+                slotsList[i].currentItem = null;
             }
         }
 
     }
-
 
 }

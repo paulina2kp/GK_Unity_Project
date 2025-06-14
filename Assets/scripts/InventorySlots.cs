@@ -11,10 +11,20 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
     public ItemClass currentItem;
     public GameObject optionPanel;
     public int index;
-
+    void Start()
+    {
+        if (index == 0 || index == 1 || index == 2 || index == 3)
+        {
+           ClearSlot();
+        }
+    }
     public ItemClass GetItem()
     {
         return currentItem;
+    }
+    public int GetStackSize()
+    {
+        return currentItem.stackSize;
     }
     public void ClearSlot()
     {
@@ -49,12 +59,6 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         if (currentItem != null)
         {
             Debug.Log("KLIKLEM " + currentItem.loot.name);
-            /////////
-            //currentItem.loot.onUse?.Invoke();
-            //if (optionPanel != null)
-            //{
-            //    optionPanel.SetActive(true);
-            //}
         }
     }
 
@@ -83,7 +87,49 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.R) && currentItem!=null)
         {
             Debug.Log("NACISNIETO R NA: " + currentItem.loot.loot_name);
-            currentItem.loot.onDrop?.Invoke();
+            //currentItem.loot.onDrop?.Invoke();
+            if (index >= 4 && index <= 6)
+            {
+                currentItem.loot.onDrop?.Invoke();
+                currentItem.DecStackSize();
+                if (currentItem.stackSize <= 0)
+                {
+                    FindFirstObjectByType<Inventory>().DeleteFromInventory(currentItem);
+                    currentItem = null;
+                }
+                FindFirstObjectByType<UISlotsHandler>().UpdateInventorySlots();
+            }
+            
+            if(index == 0 || index == 1 || index == 2)
+            {
+                currentItem.loot.onDrop?.Invoke();
+                currentItem = null;
+                item_sprite.sprite = null;
+                ClearSlot();
+                FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
+                FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
+            }
+
+            if (index == 3)
+            {
+                int realStackSize = FindFirstObjectByType<CraftManager>().GetStackSize();
+                for(int i = 0; i < realStackSize; i++)
+                {
+                    currentItem.loot.onDrop?.Invoke();
+                    currentItem.DecStackSize();
+                }
+
+                if (currentItem.stackSize <= 0)
+                {
+                    int realIndex = FindFirstObjectByType<CraftManager>().GetCurrIndex();
+                    currentItem = null;
+                    item_sprite.sprite = null;
+                    ClearSlot();
+                    FindFirstObjectByType<CraftManager>().SetBackStackSize(realIndex);
+                }
+                FindFirstObjectByType<CraftManager>().ClearAllSlots();
+            }
+
         }
     }
 }

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer my_SpriteRenderer;
     public Transform sprite_Transform;
     public Transform my_Transform;
+    public GameObject loot_prefab;
+    public GameObject my_player;
     public float move_Speed;
 
     private Vector2 move_Input;
@@ -135,5 +137,21 @@ public class PlayerController : MonoBehaviour
             stamina_number.text = player_stamina.ToString();
             stamina_bar.fillAmount = (float)(0 * 0.01);
         }
+    }
+
+    public void DropFromEQ(Loot one_item)
+    {
+        Debug.Log("jestem w DEQ");
+        Vector3 position = transform.position;
+
+        //float random_range = Random.Range(-1.5f, 1.5f);
+        Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f), position.y, position.z + Random.Range(-1.5f, 1.5f));
+        GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
+
+        spawned_object.GetComponent<PickUp>().my_Player = my_player;
+        spawned_object.GetComponent<PickUp>().item = one_item;
+        spawn_position = new Vector3(position.x, position.y, position.z);
+        spawned_object.GetComponent<SpriteRenderer>().sprite = one_item.loot_sprite;
+
     }
 }
