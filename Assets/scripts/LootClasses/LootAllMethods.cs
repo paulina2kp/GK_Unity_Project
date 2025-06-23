@@ -14,7 +14,7 @@ public class LootAllMethods : MonoBehaviour
     {
         playerController = player.GetComponent<PlayerController>();
 
-        apple.onUse = () => playerController.HealPlayer(5f);
+        apple.onUse = () => playerController.PlayerEats(5f);
         //apple.onDrop = () => playerController.DamagePlayer(5f);
         apple.onDrop = () => playerController.DropFromEQ(apple);
 

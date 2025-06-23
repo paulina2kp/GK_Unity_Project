@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,10 @@ public class PlayerController : MonoBehaviour
     public Image stamina_bar;
     public TextMeshProUGUI stamina_number;
 
+    public bool isStarving;
+    private float hungerTime = 5;
+    public int hungerAmount;
+
 
     void Start()
     {
@@ -39,6 +44,7 @@ public class PlayerController : MonoBehaviour
         hunger_number.text = player_hunger.ToString();
         stamina_number.text = player_stamina.ToString();
 
+        InvokeRepeating("GettingHungry", hungerTime, hungerTime);
     }
 
 
@@ -90,7 +96,28 @@ public class PlayerController : MonoBehaviour
         health_number.text = player_health.ToString();
         health_bar.fillAmount = (float)(player_health * 0.01);
     }
+    public void PlayerEats(float amount)
+    {
+        Debug.Log("ilosc " + amount);
+        player_hunger = player_hunger + amount;
+        Debug.Log("hunger " + player_hunger);
+        hunger_number.text = player_hunger.ToString();
+        hunger_bar.fillAmount = (float)(player_hunger * 0.01);
+    }
 
+    public void GettingHungry()
+    {
+        if (isStarving && player_hunger > 0) { 
+        player_hunger = player_hunger - hungerAmount;
+        Debug.Log("G£ÓD SPADA " + player_hunger);
+        hunger_number.text = player_hunger.ToString();
+        hunger_bar.fillAmount = (float)(player_hunger * 0.01);
+        }
+        else if(player_hunger <= 0)
+        {
+            DamagePlayer(1f);
+        }
+    }
     public void HealthLimit()
     {
         if (player_health > 100)

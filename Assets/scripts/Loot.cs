@@ -8,6 +8,7 @@ public class Loot : ScriptableObject
     public string loot_name;
     public Sprite loot_sprite;
     public int drop_chance;
+    public bool isUsable;
 
     [NonSerialized] public Action onUse;
     [NonSerialized] public Action onDrop;

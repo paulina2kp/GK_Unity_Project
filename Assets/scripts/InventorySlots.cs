@@ -81,7 +81,21 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.E) && currentItem != null)
         {
             Debug.Log("NACISNIETO E NA: " + currentItem.loot.loot_name);
-            currentItem.loot.onUse?.Invoke();
+            if (index >= 4 && index <= 6 && currentItem.loot.isUsable == true)
+            {
+                currentItem.loot.onUse?.Invoke();
+                currentItem.DecStackSize();
+                if (currentItem.stackSize <= 0)
+                {
+                    FindFirstObjectByType<Inventory>().DeleteFromInventory(currentItem);
+                    currentItem = null;
+                }
+                FindFirstObjectByType<UISlotsHandler>().UpdateInventorySlots();
+            }
+            else
+            {
+                Debug.Log("NACISNIETO NA E, ALE ITEM IS NOT USABLE");
+            }
         }
 
         if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.R) && currentItem!=null)
