@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
 
 public class CollectingMaterials : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CollectingMaterials : MonoBehaviour
     public GameObject loot_prefab;
     public List<Loot> loot_list = new List<Loot>();
 
+    public Action OnCollectedCallback;
     //public Collider my_collider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,7 +47,9 @@ public class CollectingMaterials : MonoBehaviour
     public void Die()
     {
         SpawnLoot(transform.position);
-        Destroy(gameObject);
+        OnCollectedCallback?.Invoke();
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider my_collider)
@@ -71,7 +75,7 @@ public class CollectingMaterials : MonoBehaviour
 
     List<Loot> DropItemes()
     {
-        int random_int = Random.Range(1, 101);
+        int random_int = UnityEngine.Random.Range(1, 101);
         List<Loot> final_loot = new List<Loot>();
 
         foreach (Loot one_item in loot_list)
@@ -94,7 +98,7 @@ public class CollectingMaterials : MonoBehaviour
         {
             Debug.Log("a ja foreach");
             //float random_range = Random.Range(-1.5f, 1.5f);
-            Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f), position.y, position.z + Random.Range(-1.5f, 1.5f));
+            Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-1.5f, 1.5f), position.y, position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
             GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
             spawned_object.GetComponent<PickUp>().my_Player = my_Player;
             spawned_object.GetComponent<PickUp>().item = one_item;
@@ -110,7 +114,7 @@ public class CollectingMaterials : MonoBehaviour
         Vector3 position = my_Player.transform.position;
 
         //float random_range = Random.Range(-1.5f, 1.5f);
-        Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f), position.y, position.z + Random.Range(-1.5f, 1.5f));
+        Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-1.5f, 1.5f), position.y, position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
         GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
         spawned_object.GetComponent<PickUp>().my_Player = my_Player;
         spawned_object.GetComponent<PickUp>().item = one_item;
@@ -120,4 +124,15 @@ public class CollectingMaterials : MonoBehaviour
 
     }
 
+    public void ResetResource(int deafultLife)
+    {
+        object_life = deafultLife;
+        in_Range = false;
+
+        if (my_Animator != null)
+        {
+            my_Animator.Rebind();
+        }
+             
+    }
 }

@@ -15,6 +15,7 @@ public class WorldTime : MonoBehaviour
 
     void Start()
     {
+        currentTime = new TimeSpan(7, 0, 0);
         StartCoroutine(MinutePassed());
     }
 
