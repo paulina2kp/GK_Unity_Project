@@ -9,8 +9,8 @@ public class SpawnManager : MonoBehaviour
 
     public List<ResourceClass> allResources;
 
-    private Vector2 spawnRangeX = new Vector2(-43, 43);      //map borders
-    private Vector2 spawnRangeZ = new Vector2(-43, 43);
+    private Vector2 spawnRangeX = new Vector2(-130, 130);      //map borders 
+    private Vector2 spawnRangeZ = new Vector2(-130, 130);
 
     public float minDistanceBetweenObjects = 1.5f;
 

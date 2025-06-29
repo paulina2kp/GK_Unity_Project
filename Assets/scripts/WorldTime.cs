@@ -11,17 +11,27 @@ public class WorldTime : MonoBehaviour
     public float inGameDayLength; //seconds
     private TimeSpan currentTime;
 
+    public Gradient skyTint;
+    private Material skyboxMaterial;
+
     private float oneMinuteLength => inGameDayLength / 1440;   // gameDay / irlDay
 
     void Start()
     {
+        skyboxMaterial = RenderSettings.skybox;
+
         currentTime = new TimeSpan(7, 0, 0);
         StartCoroutine(MinutePassed());
+
     }
 
     private void Update()
     {
         gameLight.color = lightGradient.Evaluate(PercentOFDay(currentTime));
+
+        skyboxMaterial.SetColor("_SkyTint", skyTint.Evaluate(PercentOFDay(currentTime)));
+        skyboxMaterial.SetColor("_GroundColor", skyTint.Evaluate(PercentOFDay(currentTime)));
+
     }
 
     private IEnumerator MinutePassed()

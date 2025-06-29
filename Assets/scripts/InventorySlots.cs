@@ -102,7 +102,7 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         {
             Debug.Log("NACISNIETO R NA: " + currentItem.loot.loot_name);
             //currentItem.loot.onDrop?.Invoke();
-            if (index >= 4 && index <= 6)
+            if (index >= 4 && index <= 10)
             {
                 currentItem.loot.onDrop?.Invoke();
                 currentItem.DecStackSize();

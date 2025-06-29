@@ -38,11 +38,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UILayer
-    uniqueID: 3049399159
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UILayer
+    uniqueID: 3049399159
     locked: 0
   m_RenderingLayers:
   - Default

@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     public int maxSlots = 2;
+    public int maxSlotCapacity = 20;
 
     public List<ItemClass> Items = new List<ItemClass>();
 
@@ -19,7 +20,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (ItemClass itemClass in Items)
         {
-            if (itemClass.loot == item)
+            if (itemClass.loot == item && itemClass.stackSize < maxSlotCapacity)
             {
                 itemClass.IncStackSize();
                 return true;

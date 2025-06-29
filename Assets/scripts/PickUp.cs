@@ -6,7 +6,6 @@ public class PickUp : MonoBehaviour
     private bool in_Range = false;
     public Loot item;
 
-    // Update is called once per frame
     void Update()
     {
         if (in_Range)
