@@ -15,6 +15,7 @@ public class WorldTime : MonoBehaviour
     private Material skyboxMaterial;
 
     private float oneMinuteLength => inGameDayLength / 1440;   // gameDay / irlDay
+    public bool isNight = false;
 
     void Start()
     {
@@ -39,6 +40,7 @@ public class WorldTime : MonoBehaviour
         currentTime += TimeSpan.FromMinutes(1);             // add one minute
         //Debug.Log("JEST TERAZ CZAS: " + currentTime);
         gameClock.SetText(currentTime.ToString(@"hh\:mm"));
+        CheckIfNight();
         yield return new WaitForSeconds(oneMinuteLength);   // wait for one minute in game
         StartCoroutine(MinutePassed());                     //infinite loop
     }
@@ -48,4 +50,19 @@ public class WorldTime : MonoBehaviour
     {
         return (float)timespan.TotalMinutes % 1440 / 1440;   //when 1.15 make 0.15
     }
+
+    private void CheckIfNight()
+    {
+        int hour = currentTime.Hours;
+        if(hour <= 5 || hour >= 22)
+        {
+            isNight = true;
+        }
+        else
+        {
+            isNight= false;
+        }
+    }
+
+    public bool IsNight { get { return isNight; } }
 }

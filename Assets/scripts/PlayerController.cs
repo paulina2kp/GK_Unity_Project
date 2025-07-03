@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-
     public Rigidbody my_Rigidbody;
     public Animator my_Animator;
     public SpriteRenderer my_SpriteRenderer;
@@ -33,9 +31,10 @@ public class PlayerController : MonoBehaviour
     private float hungerTime = 5;
     public int hungerAmount;
 
-
+    private WorldTime worldTime;
     void Start()
     {
+        worldTime = FindFirstObjectByType<WorldTime>();
 
         health_bar.fillAmount = (float)(player_health * 0.01);
         hunger_bar.fillAmount = (float)(player_hunger * 0.01);
@@ -45,6 +44,7 @@ public class PlayerController : MonoBehaviour
         stamina_number.text = player_stamina.ToString();
 
         InvokeRepeating("GettingHungry", hungerTime, hungerTime);
+        InvokeRepeating("PlayerTired", 5, 5);
     }
 
 
@@ -118,6 +118,35 @@ public class PlayerController : MonoBehaviour
             DamagePlayer(1f);
         }
     }
+    public void PlayerTired()
+    {
+        if (worldTime.isNight && player_stamina > 0)
+        {
+            player_stamina = player_stamina - 1;        
+            stamina_number.text = player_stamina.ToString();
+            stamina_bar.fillAmount = (float)(player_stamina * 0.01);
+        }
+        else if (player_stamina <= 0)
+        {
+            DamagePlayer(1f);
+        }
+    }
+
+    public void GetStamina(float amount)
+    {
+        player_stamina = player_stamina + amount;
+        stamina_number.text = player_stamina.ToString();
+        stamina_bar.fillAmount = (float)(player_stamina * 0.01);
+    }
+
+    public void LoseStamina(float amount)
+    {
+        player_stamina = player_stamina - amount;
+        stamina_number.text = player_stamina.ToString();
+        stamina_bar.fillAmount = (float)(player_stamina * 0.01);
+    }
+
+
     public void HealthLimit()
     {
         if (player_health > 100)
