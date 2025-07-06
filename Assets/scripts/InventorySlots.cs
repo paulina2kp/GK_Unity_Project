@@ -11,6 +11,9 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
     public ItemClass currentItem;
     public GameObject optionPanel;
     public int index;
+
+    public bool isChestSlot = false;
+    public UIChestSlots chestUI;
     void Start()
     {
         if (index == 0 || index == 1 || index == 2 || index == 3)
@@ -101,7 +104,6 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.R) && currentItem!=null)
         {
             Debug.Log("NACISNIETO R NA: " + currentItem.loot.loot_name);
-            //currentItem.loot.onDrop?.Invoke();
             if (index >= 4 && index <= 10)
             {
                 currentItem.loot.onDrop?.Invoke();
@@ -144,6 +146,69 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
                 FindFirstObjectByType<CraftManager>().ClearAllSlots();
             }
 
+            /*if (isChestSlot)
+            {
+                currentItem.loot.onDrop?.Invoke();
+                currentItem.DecStackSize();
+
+                if (currentItem.stackSize <= 0)
+                {
+                    chestUI.TryRemoveItemFromSlot(index);
+                    currentItem = null;
+                }
+                chestUI.UpdateChestSlots();
+            }*/
         }
+
+        /*if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.Q) && currentItem != null)
+        {
+            Debug.Log("NACISNIETO Q NA: " + currentItem.loot.loot_name);
+            if (index >= 4 && index <= 10)
+            {
+                currentItem.loot.onStore?.Invoke();
+                currentItem.DecStackSize();
+                if (currentItem.stackSize <= 0)
+                {
+                    FindFirstObjectByType<Inventory>().DeleteFromInventory(currentItem);
+                    currentItem = null;
+                }
+                FindFirstObjectByType<UISlotsHandler>().UpdateInventorySlots();
+            }
+
+            if (index == 0 || index == 1 || index == 2)
+            {
+                currentItem.loot.onStore?.Invoke();
+                currentItem = null;
+                item_sprite.sprite = null;
+                ClearSlot();
+                FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
+                FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
+            }
+
+            if (index == 3)
+            {
+                int realStackSize = FindFirstObjectByType<CraftManager>().GetStackSize();
+                for (int i = 0; i < realStackSize; i++)
+                {
+                    currentItem.loot.onStore?.Invoke();
+                    currentItem.DecStackSize();
+                }
+
+                if (currentItem.stackSize <= 0)
+                {
+                    int realIndex = FindFirstObjectByType<CraftManager>().GetCurrIndex();
+                    currentItem = null;
+                    item_sprite.sprite = null;
+                    ClearSlot();
+                    FindFirstObjectByType<CraftManager>().SetBackStackSize(realIndex);
+                }
+                FindFirstObjectByType<CraftManager>().ClearAllSlots();
+            }
+
+            if (isChestSlot)
+            {
+                Debug.Log("juz jest w chest");
+            }
+        }*/
     }
 }

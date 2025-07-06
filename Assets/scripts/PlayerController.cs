@@ -17,13 +17,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 move_Input;
 
-    private float player_health = 90;
+    private float player_health = 100;
     public Image health_bar;
     public TextMeshProUGUI health_number;
-    private float player_hunger = 50;
+    private float player_hunger = 100;
     public Image hunger_bar;
     public TextMeshProUGUI hunger_number;
-    private float player_stamina = 80;
+    private float player_stamina = 100;
     public Image stamina_bar;
     public TextMeshProUGUI stamina_number;
 
@@ -209,5 +209,27 @@ public class PlayerController : MonoBehaviour
         spawn_position = new Vector3(position.x, position.y, position.z);
         spawned_object.GetComponent<SpriteRenderer>().sprite = one_item.loot_sprite;
 
+    }
+
+    public void StoreInChest(Loot item)
+    {
+        ChestInventory[] chests = FindObjectsByType<ChestInventory>(FindObjectsSortMode.None);
+
+        foreach (ChestInventory chest in chests)
+        {
+            if (chest.playerInRange)
+            {
+                bool success = chest.Add(item);
+                if (success)
+                {
+                    return; 
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+        Debug.Log("nie ma skrzynki in range");
     }
 }

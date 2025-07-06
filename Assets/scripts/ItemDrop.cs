@@ -7,10 +7,9 @@ public class ItemDrop : MonoBehaviour, IDropHandler
     {
         RectTransform inventoryPanel = transform as RectTransform;
 
-        if(!RectTransformUtility.RectangleContainsScreenPoint(inventoryPanel, eventData.position))
+        if (!RectTransformUtility.RectangleContainsScreenPoint(inventoryPanel, eventData.position))
         {
             Debug.Log("DROPUJE");
         }
     }
-
 }

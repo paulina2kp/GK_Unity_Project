@@ -14,7 +14,6 @@ public class UISlotsHandler : MonoBehaviour
         foreach (Transform currSlot in inventoryPanel)
         {
             InventorySlots slotComponent = currSlot.GetComponent<InventorySlots> ();
-
             if(slotComponent != null)
             {
                 slotsList.Add (slotComponent);

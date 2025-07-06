@@ -9,26 +9,27 @@ public class LootAllMethods : MonoBehaviour
     private PlayerController playerController;
     private CollectingMaterials collectingMaterials;
     public GameObject player;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerController = player.GetComponent<PlayerController>();
+        PondCollect[] allPonds = Object.FindObjectsByType<PondCollect>(FindObjectsSortMode.None);
+        PondCollect pondWater = GameObject.FindWithTag("Pond").GetComponent<PondCollect>();
 
         apple.onUse = () => playerController.PlayerEats(5f);
-        //apple.onDrop = () => playerController.DamagePlayer(5f);
         apple.onDrop = () => playerController.DropFromEQ(apple);
 
-        log.onUse = () => Debug.Log("LOG ON USE");
-        //log.onDrop = () => Debug.Log("LOG ON DROP");
+        /*log.onUse = () => { foreach (var pond in allPonds)
+                            {
+                                pond.DropFromPond(); 
+                            }
+                          };*/
+        log.onUse = () => pondWater.DropFromPond();
         log.onDrop = () => playerController.DropFromEQ(log);
 
         stick.onUse = () => Debug.Log("stick ON USE");
         stick.onDrop = () => playerController.DropFromEQ(stick);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
+
+
 }

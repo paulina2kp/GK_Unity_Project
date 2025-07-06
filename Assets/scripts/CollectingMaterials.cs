@@ -17,7 +17,6 @@ public class CollectingMaterials : MonoBehaviour
     public Action OnCollectedCallback;
     //public Collider my_collider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
@@ -58,7 +57,6 @@ public class CollectingMaterials : MonoBehaviour
         {
             Debug.Log("Weszlo");
             in_Range = true;
-            Debug.Log(in_Range);
         }
     }
 
@@ -68,7 +66,6 @@ public class CollectingMaterials : MonoBehaviour
         {
             Debug.Log("WYSZLO");
             in_Range = false;
-            Debug.Log(in_Range);
         }
     }
 
@@ -91,12 +88,9 @@ public class CollectingMaterials : MonoBehaviour
 
     public void SpawnLoot(Vector3 position)
     {
-        Debug.Log("jestem w spawn");
         List<Loot> final_loot = DropItemes();
-        Debug.Log("PO");
         foreach (Loot one_item in final_loot)
         {
-            Debug.Log("a ja foreach");
             //float random_range = Random.Range(-1.5f, 1.5f);
             Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-1.5f, 1.5f), position.y, position.z + UnityEngine.Random.Range(-1.5f, 1.5f));
             GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);

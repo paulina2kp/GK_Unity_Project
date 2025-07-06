@@ -12,5 +12,6 @@ public class Loot : ScriptableObject
 
     [NonSerialized] public Action onUse;
     [NonSerialized] public Action onDrop;
+    //[NonSerialized] public Action onStore;
     
 }
