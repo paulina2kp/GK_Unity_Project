@@ -84,7 +84,7 @@ public class InventorySlots : MonoBehaviour, ISelectHandler
         if (EventSystem.current.currentSelectedGameObject == gameObject && Input.GetKeyDown(KeyCode.E) && currentItem != null)
         {
             Debug.Log("NACISNIETO E NA: " + currentItem.loot.loot_name);
-            if (index >= 4 && index <= 6 && currentItem.loot.isUsable == true)
+            if (index >= 4 && index <= 10 && currentItem.loot.isUsable == true)
             {
                 currentItem.loot.onUse?.Invoke();
                 currentItem.DecStackSize();

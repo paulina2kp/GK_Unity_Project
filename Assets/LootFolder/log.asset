@@ -15,4 +15,4 @@ MonoBehaviour:
   loot_name: log
   loot_sprite: {fileID: 42909794, guid: ea92daf3dae8829418038ad40bf6d774, type: 3}
   drop_chance: 100
-  isUsable: 1
+  isUsable: 0

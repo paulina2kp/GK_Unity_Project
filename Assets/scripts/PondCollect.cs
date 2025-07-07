@@ -7,13 +7,22 @@ public class PondCollect : MonoBehaviour
     private bool in_Range = false;
 
     public GameObject loot_prefab;
-    public Loot loot;
+    public Loot shovelLoot;
+    public Loot waterBowlLoot;
 
     public void DropFromPond()
     {
         if (in_Range)
         {
-            SpawnLoot(my_Player.transform.position);
+            SpawnLoot(my_Player.transform.position, shovelLoot);
+        }
+    }
+
+    public void DropWaterBowl()
+    {
+        if (in_Range)
+        {
+            SpawnLoot(my_Player.transform.position, waterBowlLoot);
         }
     }
 
@@ -32,7 +41,7 @@ public class PondCollect : MonoBehaviour
         }
     }
 
-    public void SpawnLoot(Vector3 position)
+    public void SpawnLoot(Vector3 position, Loot loot)
     {
             Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-0.5f, 0.5f) - 1.5f, position.y, position.z + UnityEngine.Random.Range(-0.5f, 0.5f) - 3f);
             GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);

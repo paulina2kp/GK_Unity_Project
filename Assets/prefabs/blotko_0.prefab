@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5201487355534157766}
   - component: {fileID: 8645587797338149009}
   - component: {fileID: 3314403710424764531}
+  - component: {fileID: 2911010559670649763}
   m_Layer: 0
   m_Name: blotko_0
   m_TagString: Untagged
@@ -163,3 +164,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 2
+--- !u!114 &2911010559670649763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3490766359028700544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4ee369370d9b047a297df292908391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  my_Player: {fileID: 0}
+  loot_prefab: {fileID: 1905437359107144461, guid: ef4ce96b95923f449a796856ae0f4877, type: 3}
+  shovelLoot: {fileID: 11400000, guid: ac89981518d7d854089d38a7493cb013, type: 2}
+  waterBowlLoot: {fileID: 11400000, guid: e29ee82f229e3eb4caa7b266d983a769, type: 2}

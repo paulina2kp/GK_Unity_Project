@@ -15,4 +15,4 @@ MonoBehaviour:
   loot_name: mushroom
   loot_sprite: {fileID: 1663276745, guid: 8bf92f6e4e1af6f49a8e031834e56027, type: 3}
   drop_chance: 100
-  isUsable: 0
+  isUsable: 1
