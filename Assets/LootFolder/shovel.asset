@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loot_name: shovel
   loot_sprite: {fileID: 175884861, guid: c6a278aa0d825604682bcf3ce91ac469, type: 3}
-  drop_chance: 0
+  drop_chance: 100
   isUsable: 1

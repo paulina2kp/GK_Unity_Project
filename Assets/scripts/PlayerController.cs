@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public int hungerAmount;
 
     private WorldTime worldTime;
+    public bool safeSpace = false;
     void Start()
     {
         worldTime = FindFirstObjectByType<WorldTime>();
@@ -82,25 +83,19 @@ public class PlayerController : MonoBehaviour
 
     public void HealPlayer(float amount)
     {
-        Debug.Log("ilosc " + amount);
         player_health = player_health + amount;
-        Debug.Log("health " + player_health);
         health_number.text = player_health.ToString();
         health_bar.fillAmount = (float)(player_health * 0.01);
     }
     public void DamagePlayer(float amount)
     {
-        Debug.Log("ilosc " + amount);
         player_health = player_health - amount;
-        Debug.Log("health " + player_health);
         health_number.text = player_health.ToString();
         health_bar.fillAmount = (float)(player_health * 0.01);
     }
     public void PlayerEats(float amount)
     {
-        Debug.Log("ilosc " + amount);
         player_hunger = player_hunger + amount;
-        Debug.Log("hunger " + player_hunger);
         hunger_number.text = player_hunger.ToString();
         hunger_bar.fillAmount = (float)(player_hunger * 0.01);
     }
@@ -109,7 +104,6 @@ public class PlayerController : MonoBehaviour
     {
         if (isStarving && player_hunger > 0) { 
         player_hunger = player_hunger - hungerAmount;
-        Debug.Log("G£ÓD SPADA " + player_hunger);
         hunger_number.text = player_hunger.ToString();
         hunger_bar.fillAmount = (float)(player_hunger * 0.01);
         }
@@ -120,15 +114,15 @@ public class PlayerController : MonoBehaviour
     }
     public void PlayerTired()
     {
-        if (worldTime.isNight && player_stamina > 0)
+        if (player_stamina <= 0)
+        {
+            DamagePlayer(1f);
+        }
+        else if (worldTime.isNight && safeSpace == false)
         {
             player_stamina = player_stamina - 1;        
             stamina_number.text = player_stamina.ToString();
             stamina_bar.fillAmount = (float)(player_stamina * 0.01);
-        }
-        else if (player_stamina <= 0)
-        {
-            DamagePlayer(1f);
         }
     }
 
@@ -197,18 +191,29 @@ public class PlayerController : MonoBehaviour
 
     public void DropFromEQ(Loot one_item)
     {
-        Debug.Log("jestem w DEQ");
         Vector3 position = transform.position;
-
-        //float random_range = Random.Range(-1.5f, 1.5f);
-        Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f), position.y, position.z + Random.Range(-1.5f, 1.5f));
+        Vector3 spawn_position = new Vector3(position.x + Random.Range(-1.5f, 1.5f) , position.y, position.z + Random.Range(-1.5f, 1.5f));
         GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
 
         spawned_object.GetComponent<PickUp>().my_Player = my_player;
         spawned_object.GetComponent<PickUp>().item = one_item;
-        spawn_position = new Vector3(position.x, position.y, position.z);
         spawned_object.GetComponent<SpriteRenderer>().sprite = one_item.loot_sprite;
 
+    }
+
+    public void PlaceTorch(GameObject prefab)
+    {
+        Vector3 position = my_player.transform.GetChild(0).position;
+        Vector3 spawn_position = new Vector3(position.x, position.y, position.z - 3.5f);
+        GameObject spawned_object = Instantiate(prefab, spawn_position, Quaternion.identity);
+        spawned_object.GetComponent<TorchFunction>().my_player = my_player;
+    }
+
+    public void PlaceMine(GameObject prefab)
+    {
+        Vector3 position = transform.position;
+        Vector3 spawn_position = new Vector3(position.x, position.y, position.z);
+        GameObject spawned_object = Instantiate(prefab, spawn_position, Quaternion.identity);
     }
 
     public void StoreInChest(Loot item)

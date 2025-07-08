@@ -44,9 +44,7 @@ public class PickUp : MonoBehaviour
     {
         if (my_collider.gameObject.Equals(my_Player))
         {
-            Debug.Log("moge zbierac");
             in_Range = true;
-            Debug.Log(in_Range);
         }
     }
 

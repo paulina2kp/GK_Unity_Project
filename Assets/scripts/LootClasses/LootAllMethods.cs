@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.Rendering.ReloadAttribute;
 
 public class LootAllMethods : MonoBehaviour
 {
@@ -16,6 +17,19 @@ public class LootAllMethods : MonoBehaviour
     public Loot waterBowl;
     public Loot sand;
     public Loot torchNotUsed;
+    public GameObject torchPrefab;
+    public Loot ashes;
+    public Loot spark;
+    public Loot flame;
+    public Loot glass;
+    public Loot emptyPotion;
+    public Loot bigStone;
+    public Loot bigLog;
+    public Loot brick;
+    public Loot miniMine;
+    public GameObject minePrefab;
+    public Loot strongStick;
+    public Loot pickaxe;
 
     private PlayerController playerController;
     private CollectingMaterials collectingMaterials;
@@ -30,10 +44,8 @@ public class LootAllMethods : MonoBehaviour
         apple.onUse = () => playerController.PlayerEats(10f);
 
         log.onDrop = () => playerController.DropFromEQ(log);
-        //log.onUse = () => 
 
-        stick.onDrop = () => playerController.DropFromEQ(stick);
-        //stick.onUse = () =>      
+        stick.onDrop = () => playerController.DropFromEQ(stick);    
 
         shovel.onDrop = () => playerController.DropFromEQ(shovel);
         shovel.onUse = () => 
@@ -51,7 +63,6 @@ public class LootAllMethods : MonoBehaviour
         blueberries.onUse = () => playerController.PlayerEats(5f);
 
         clay.onDrop = () => playerController.DropFromEQ(clay);
-        //clay.onUse = () =>
 
         mushroom.onDrop = () => playerController.DropFromEQ(mushroom);
         mushroom.onUse = () => playerController.PlayerEats(15f);
@@ -62,7 +73,6 @@ public class LootAllMethods : MonoBehaviour
                                   playerController.LoseStamina(10f);};
 
         stone.onDrop = () => playerController.DropFromEQ(stone);
-        //stone.onUse = () =>
 
         bowl.onDrop = () => playerController.DropFromEQ(bowl);
         bowl.onUse = () => pondWater.DropWaterBowl();
@@ -70,13 +80,34 @@ public class LootAllMethods : MonoBehaviour
         waterBowl.onDrop = () => playerController.DropFromEQ(waterBowl);
         waterBowl.onUse = () => playerController.GetStamina(20f);
 
-        sand.onDrop = () => playerController.DropFromEQ(waterBowl);
-        //sand.onUse = () => 
+        sand.onDrop = () => playerController.DropFromEQ(waterBowl); 
 
         torchNotUsed.onDrop = () => playerController.DropFromEQ(torchNotUsed);
-        //torchNotUsed.onUse = () => 
+        torchNotUsed.onUse = () => playerController.PlaceTorch(torchPrefab);
 
+        ashes.onDrop = () => playerController.DropFromEQ(ashes);
+
+        spark.onDrop = () => playerController.DropFromEQ(spark);
+
+        flame.onDrop = () => playerController.DropFromEQ(flame);
+
+        glass.onDrop = () => playerController.DropFromEQ(glass);
+
+        emptyPotion.onDrop = () => playerController.DropFromEQ(emptyPotion);
+        //emptyPotion.onUse = () => TO DO!
+
+        bigStone.onDrop = () => playerController.DropFromEQ(bigStone);
+
+        bigLog.onDrop = () => playerController.DropFromEQ(bigLog);
+
+        brick.onDrop = () => playerController.DropFromEQ(brick);
+
+        miniMine.onDrop = () => playerController.DropFromEQ(miniMine);
+        miniMine.onUse = () => playerController.PlaceMine(minePrefab);
+
+        strongStick.onDrop = () => playerController.DropFromEQ(strongStick);
+
+        pickaxe.onDrop = () => playerController.DropFromEQ(pickaxe);
+        //pickaxe.onUse = () => TO DO!
     }
-
-
 }
