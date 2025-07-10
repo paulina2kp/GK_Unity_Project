@@ -2,12 +2,14 @@ using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody my_Rigidbody;
     public Animator my_Animator;
+    public Animator blood_Animator;
     public SpriteRenderer my_SpriteRenderer;
     public Transform sprite_Transform;
     public Transform my_Transform;
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private WorldTime worldTime;
     public bool safeSpace = false;
+    private bool isDead = false;
     void Start()
     {
         worldTime = FindFirstObjectByType<WorldTime>();
@@ -79,6 +82,11 @@ public class PlayerController : MonoBehaviour
         HealthLimit();
         HungerLimit();
         StaminaLimit();
+
+        if(player_health == 0 && !isDead )
+        {
+            PlayerDie();
+        }
     }
 
     public void HealPlayer(float amount)
@@ -140,6 +148,36 @@ public class PlayerController : MonoBehaviour
         stamina_bar.fillAmount = (float)(player_stamina * 0.01);
     }
 
+    public void SpeedPlayer()
+    {
+        float currSpeed = move_Speed;
+        move_Speed = 20f;
+        StartCoroutine(Wait10sec(currSpeed));
+    }
+    private IEnumerator Wait10sec(float speed)
+    {
+        yield return new WaitForSeconds(10);
+        move_Speed = speed;
+    }
+
+    private IEnumerator Wait1sec()
+    {
+        yield return new WaitForSeconds(0.5f);
+        var bloodHolder = transform.GetChild(3);
+        bloodHolder.gameObject.SetActive(false);
+        SceneManager.LoadScene("GameOverScene");
+    }
+
+    public void PlayerDie()
+    {
+
+        var bloodHolder = transform.GetChild(3);
+        bloodHolder.gameObject.SetActive(true);
+        blood_Animator.SetTrigger("Die");
+        isDead = true;
+        transform.GetChild(0).gameObject.SetActive(false);
+        StartCoroutine(Wait1sec());
+    }
 
     public void HealthLimit()
     {
@@ -214,6 +252,15 @@ public class PlayerController : MonoBehaviour
         Vector3 position = transform.position;
         Vector3 spawn_position = new Vector3(position.x, position.y, position.z);
         GameObject spawned_object = Instantiate(prefab, spawn_position, Quaternion.identity);
+        spawned_object.GetComponent<MineFunction>().my_Player = my_player;
+    }
+
+    public void PlaceCauldron(GameObject prefab)
+    {
+        Vector3 position = transform.position;
+        Vector3 spawn_position = new Vector3(position.x, position.y, position.z);
+        GameObject spawned_object = Instantiate(prefab, spawn_position, Quaternion.identity);
+        spawned_object.GetComponent<CauldronFunction>().my_Player = my_player;
     }
 
     public void StoreInChest(Loot item)

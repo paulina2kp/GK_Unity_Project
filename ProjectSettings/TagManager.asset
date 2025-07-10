@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Pond
+  - Mine
+  - Escape
+  - Blood
   layers:
   - Default
   - TransparentFX

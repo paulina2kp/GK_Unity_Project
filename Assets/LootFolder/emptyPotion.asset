@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loot_name: emptyPotion
   loot_sprite: {fileID: 1262433472, guid: 211a50cc40fde5349b95415d2200698f, type: 3}
-  drop_chance: 0
-  isUsable: 1
+  drop_chance: 100
+  isUsable: 0

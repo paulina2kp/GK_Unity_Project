@@ -30,9 +30,34 @@ public class LootAllMethods : MonoBehaviour
     public GameObject minePrefab;
     public Loot strongStick;
     public Loot pickaxe;
+    public Loot coal;
+    public Loot blueGem;
+    public Loot purpleGem;
+    public Loot yellowGem;
+    public Loot redGem;
+    public Loot blackGem;
+    public Loot magicStone;
+    public Loot magicGem;
+    public Loot cauldron;
+    public GameObject cauldronPrefab;
+    public Loot floverBlue;
+    public Loot floverPurple;
+    public Loot floverYellow;
+    public Loot floverRed;
+    public Loot floverBlack;
+    public Loot dyeRed;
+    public Loot dyePurple;
+    public Loot dyeBlack;
+    public Loot dyeBlue;
+    public Loot dyeYellow;
+    public Loot potRed;
+    public Loot potPurple;
+    public Loot potBlack;
+    public Loot potBlue;
+    public Loot potYellow;
+    public Loot magicStaff;
 
     private PlayerController playerController;
-    private CollectingMaterials collectingMaterials;
     public GameObject player;
     void Start()
     {
@@ -94,7 +119,6 @@ public class LootAllMethods : MonoBehaviour
         glass.onDrop = () => playerController.DropFromEQ(glass);
 
         emptyPotion.onDrop = () => playerController.DropFromEQ(emptyPotion);
-        //emptyPotion.onUse = () => TO DO!
 
         bigStone.onDrop = () => playerController.DropFromEQ(bigStone);
 
@@ -108,6 +132,114 @@ public class LootAllMethods : MonoBehaviour
         strongStick.onDrop = () => playerController.DropFromEQ(strongStick);
 
         pickaxe.onDrop = () => playerController.DropFromEQ(pickaxe);
-        //pickaxe.onUse = () => TO DO!
+        pickaxe.onUse = () =>
+        {
+            MineFunction[] allMines = Object.FindObjectsByType<MineFunction>(FindObjectsSortMode.None);
+            foreach (var mine in allMines)
+            {
+                if (mine != null)
+                {
+                    mine.DropFromMine();
+                }
+            }
+        };
+
+        coal.onDrop = () => playerController.DropFromEQ(coal);
+
+        blueGem.onDrop = () => playerController.DropFromEQ(blueGem);
+        purpleGem.onDrop = () => playerController.DropFromEQ(purpleGem);
+        yellowGem.onDrop = () => playerController.DropFromEQ(yellowGem);
+        redGem.onDrop = () => playerController.DropFromEQ(redGem);
+        blackGem.onDrop = () => playerController.DropFromEQ(blackGem);
+
+        magicStone.onDrop = () => playerController.DropFromEQ(magicStone);
+
+        magicGem.onDrop = () => playerController.DropFromEQ(magicGem);
+
+        cauldron.onDrop = () => playerController.DropFromEQ(cauldron);
+        cauldron.onUse = () => playerController.PlaceCauldron(cauldronPrefab); 
+
+        floverBlue.onDrop = () => playerController.DropFromEQ(floverBlue);
+        floverBlack.onDrop = () => playerController.DropFromEQ(floverBlack);
+        floverRed.onDrop = () => playerController.DropFromEQ(floverRed);
+        floverYellow.onDrop = () => playerController.DropFromEQ(floverYellow);
+        floverPurple.onDrop = () => playerController.DropFromEQ(floverPurple);
+
+        dyeBlue.onDrop = () => playerController.DropFromEQ(dyeBlue);
+        dyeBlue.onUse = () => 
+        {
+            CauldronFunction[] allCauldrons = Object.FindObjectsByType<CauldronFunction>(FindObjectsSortMode.None);
+            foreach (var cauldron in allCauldrons)
+            {
+                if (cauldron != null)
+                {
+                    cauldron.DropFromCauldron(potBlue);
+                }
+            }
+        };
+
+        dyeBlack.onDrop = () => playerController.DropFromEQ(dyeBlack);
+        dyeBlack.onUse = () =>
+        {
+            CauldronFunction[] allCauldrons = Object.FindObjectsByType<CauldronFunction>(FindObjectsSortMode.None);
+            foreach (var cauldron in allCauldrons)
+            {
+                if (cauldron != null)
+                {
+                    cauldron.DropFromCauldron(potBlack);
+                }
+            }
+        };
+        dyeRed.onDrop = () => playerController.DropFromEQ(dyeRed);
+        dyeRed.onUse = () => 
+        {
+            CauldronFunction[] allCauldrons = Object.FindObjectsByType<CauldronFunction>(FindObjectsSortMode.None);
+            foreach (var cauldron in allCauldrons)
+            {
+                if (cauldron != null)
+                {
+                    cauldron.DropFromCauldron(potRed);
+                }
+            }
+        };
+        dyeYellow.onDrop = () => playerController.DropFromEQ(dyeYellow);
+        dyeYellow.onUse = () =>
+        {
+            CauldronFunction[] allCauldrons = Object.FindObjectsByType<CauldronFunction>(FindObjectsSortMode.None);
+            foreach (var cauldron in allCauldrons)
+            {
+                if (cauldron != null)
+                {
+                    cauldron.DropFromCauldron(potYellow);
+                }
+            }
+        };
+        dyePurple.onDrop = () => playerController.DropFromEQ(dyePurple);
+        dyePurple.onUse = () =>
+        {
+            CauldronFunction[] allCauldrons = Object.FindObjectsByType<CauldronFunction>(FindObjectsSortMode.None);
+            foreach (var cauldron in allCauldrons)
+            {
+                if (cauldron != null)
+                {
+                    cauldron.DropFromCauldron(potPurple);
+                }
+            }
+        };
+
+        potBlue.onDrop = () => playerController.DropFromEQ(potBlue);
+        potBlue.onUse = () => playerController.GetStamina(100f);
+        potBlack.onDrop = () => playerController.DropFromEQ(potBlack);
+        potBlack.onUse = () => { playerController.DamagePlayer(30f);
+                                 playerController.SpeedPlayer();};
+        potRed.onDrop = () => playerController.DropFromEQ(potRed);
+        potRed.onUse = () => playerController.HealPlayer(100f);
+        potYellow.onDrop = () => playerController.DropFromEQ(potYellow);
+        potYellow.onUse = () => playerController.PlayerEats(100f);
+        potPurple.onDrop = () => playerController.DropFromEQ(potPurple);
+        //potPurple.onUse = () => TO DO zamiana w czlowieka
+
+        magicStaff.onDrop = () => playerController.DropFromEQ(magicStaff);
+        magicStaff.onUse = () => GameObject.FindWithTag("Escape").GetComponent<FenceToEscape>().Destroy();
     }
 }

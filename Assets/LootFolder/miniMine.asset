@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loot_name: miniMine
   loot_sprite: {fileID: 1504638131, guid: f7e58c44363a2d549b5efd5b91f12ea5, type: 3}
-  drop_chance: 0
+  drop_chance: 100
   isUsable: 1
