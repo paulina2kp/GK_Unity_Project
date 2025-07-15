@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PondCollect : MonoBehaviour
 {
     public GameObject my_Player;
     private bool in_Range = false;
-
     public GameObject loot_prefab;
     public Loot shovelLoot;
     public Loot waterBowlLoot;
@@ -33,6 +31,7 @@ public class PondCollect : MonoBehaviour
             in_Range = true;
         }
     }
+
     private void OnTriggerExit(Collider my_collider)
     {
         if (my_collider.gameObject.Equals(my_Player))

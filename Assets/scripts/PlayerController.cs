@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public Rigidbody my_Rigidbody;
     public Animator my_Animator;
     public Animator blood_Animator;
+    public Animator change_Animator;
     public SpriteRenderer my_SpriteRenderer;
     public Transform sprite_Transform;
     public Transform my_Transform;
     public GameObject loot_prefab;
     public GameObject my_player;
+    public Loot magicGem;
     public float move_Speed;
 
     private Vector2 move_Input;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     private WorldTime worldTime;
     public bool safeSpace = false;
     private bool isDead = false;
+    public bool isHuman = false;
     void Start()
     {
         worldTime = FindFirstObjectByType<WorldTime>();
@@ -61,11 +63,25 @@ public class PlayerController : MonoBehaviour
 
         if (move_Input.x == 0 && move_Input.y == 0)
         {
-            my_Animator.SetBool("isMoving", false);
+            if (isHuman)
+            {
+                my_Animator.SetBool("isMovingHuman", false);
+            }
+            else
+            {
+                my_Animator.SetBool("isMoving", false);
+            }       
         }
         else
         {
-            my_Animator.SetBool("isMoving", true);
+            if (isHuman)
+            {
+                my_Animator.SetBool("isMovingHuman", true);
+            }
+            else
+            {
+                my_Animator.SetBool("isMoving", true);
+            }
         }
 
         if (!my_SpriteRenderer.flipX && move_Input.x < 0)
@@ -170,7 +186,6 @@ public class PlayerController : MonoBehaviour
 
     public void PlayerDie()
     {
-
         var bloodHolder = transform.GetChild(3);
         bloodHolder.gameObject.SetActive(true);
         blood_Animator.SetTrigger("Die");
@@ -236,7 +251,6 @@ public class PlayerController : MonoBehaviour
         spawned_object.GetComponent<PickUp>().my_Player = my_player;
         spawned_object.GetComponent<PickUp>().item = one_item;
         spawned_object.GetComponent<SpriteRenderer>().sprite = one_item.loot_sprite;
-
     }
 
     public void PlaceTorch(GameObject prefab)
@@ -263,25 +277,24 @@ public class PlayerController : MonoBehaviour
         spawned_object.GetComponent<CauldronFunction>().my_Player = my_player;
     }
 
-    public void StoreInChest(Loot item)
+    private IEnumerator WaitForChange()
     {
-        ChestInventory[] chests = FindObjectsByType<ChestInventory>(FindObjectsSortMode.None);
+        yield return new WaitForSeconds(0.6f);
+        var changeAnimHolder = transform.GetChild(4);
+        changeAnimHolder.gameObject.SetActive(false);
+    }
 
-        foreach (ChestInventory chest in chests)
+    public void ChangeIntoHuman()
+    {
+        if (!isHuman)
         {
-            if (chest.playerInRange)
-            {
-                bool success = chest.Add(item);
-                if (success)
-                {
-                    return; 
-                }
-                else
-                {
-                    return;
-                }
-            }
+            DropFromEQ(magicGem);
+            my_Animator.SetBool("idleHuman", true);
+            isHuman = true;
+            var changeAnimHolder = transform.GetChild(4);
+            changeAnimHolder.gameObject.SetActive(true);
+            change_Animator.SetTrigger("change");
+            StartCoroutine(WaitForChange());
         }
-        Debug.Log("nie ma skrzynki in range");
     }
 }

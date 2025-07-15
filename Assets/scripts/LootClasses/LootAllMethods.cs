@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.Rendering.ReloadAttribute;
 
 public class LootAllMethods : MonoBehaviour
 {
@@ -231,13 +230,14 @@ public class LootAllMethods : MonoBehaviour
         potBlue.onUse = () => playerController.GetStamina(100f);
         potBlack.onDrop = () => playerController.DropFromEQ(potBlack);
         potBlack.onUse = () => { playerController.DamagePlayer(30f);
-                                 playerController.SpeedPlayer();};
+                                 playerController.SpeedPlayer();
+        };
         potRed.onDrop = () => playerController.DropFromEQ(potRed);
         potRed.onUse = () => playerController.HealPlayer(100f);
         potYellow.onDrop = () => playerController.DropFromEQ(potYellow);
         potYellow.onUse = () => playerController.PlayerEats(100f);
         potPurple.onDrop = () => playerController.DropFromEQ(potPurple);
-        //potPurple.onUse = () => TO DO zamiana w czlowieka
+        potPurple.onUse = () => playerController.ChangeIntoHuman();                           
 
         magicStaff.onDrop = () => playerController.DropFromEQ(magicStaff);
         magicStaff.onUse = () => GameObject.FindWithTag("Escape").GetComponent<FenceToEscape>().Destroy();

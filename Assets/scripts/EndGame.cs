@@ -9,7 +9,6 @@ public class EndGame : MonoBehaviour
     {
         if (my_collider.transform.root.gameObject == my_Player)
         {
-            Debug.Log("KONIEC GRY GRATULACJE");
             SceneManager.LoadScene("EndMenu");
         }
     }

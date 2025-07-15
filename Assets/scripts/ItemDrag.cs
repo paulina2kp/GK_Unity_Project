@@ -1,14 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     public Canvas canvas;
     public Transform originalParent;
     public CanvasGroup canvasGroup;
-    //public CanvasGroup craftCanvasGroup;
     public Transform craftSlot1;
     public Transform craftSlot2;
     public Transform craftSlot3;
@@ -18,9 +15,7 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     {
         transform.SetParent(canvas.transform);
         canvasGroup.blocksRaycasts = false;
-        Debug.Log("ZACZYNAM DRAG");
         draggedItem = originalParent.GetComponent<InventorySlots>().GetItem();
-        Debug.Log("drag item to: " + draggedItem.loot.loot_name);
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -32,61 +27,46 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
             out pos
         );
 
-        transform.localPosition = pos;
-        
-        //Debug.Log("DRAGUJE");
+        transform.localPosition = pos;     
     }
 
     public void OnEndDrag(PointerEventData eventData)
-    {
-        
+    {       
         if (IsPointerOverSlot(craftSlot1, eventData))
         {
-            Debug.Log("TAK 1");
             MoveToSlot(craftSlot1);
             FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
             FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else if (IsPointerOverSlot(craftSlot2, eventData))
         {
-            Debug.Log("TAK 2");
             MoveToSlot(craftSlot2);
             FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
             FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else if (IsPointerOverSlot(craftSlot3, eventData))
         {
-            Debug.Log("TAK 3");
             MoveToSlot(craftSlot3);
             FindFirstObjectByType<CraftManager>().prepareCurrentRecepie();
             FindFirstObjectByType<CraftManager>().GiveItemFromRecepie();
         }
         else
         {
-            Debug.Log("TAK NIC");
             transform.SetParent(originalParent);
             transform.localPosition = Vector3.zero;
         }
 
-        //transform.SetParent(originalParent);
-
-        //transform.localPosition = Vector3.zero;
         canvasGroup.blocksRaycasts = true;
-           
-        Debug.Log("KONIEC DRAG");
     }
 
     private void MoveToSlot(Transform slot)
     {
-        //transform.SetParent(slot);
-        //transform.localPosition = Vector3.zero;
-        //Debug.Log("PRZENIESIONO DO: " + slot.name);
         slot.GetComponent<InventorySlots>().PrepareSlot();
         slot.GetComponent<InventorySlots>().currentItem = draggedItem;
         slot.GetComponent<InventorySlots>().item_sprite.sprite = draggedItem.loot.loot_sprite;
-        //transform.localPosition = Vector3.zero;
-        //transform.SetParent(originalParent);
+
         draggedItem.DecStackSize();
+
         if(originalParent.GetComponent<InventorySlots>().currentItem.stackSize > 0)
         {
             originalParent.GetComponent<InventorySlots>().item_sprite.sprite = draggedItem.loot.loot_sprite;
@@ -110,5 +90,4 @@ public class ItemDrag : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
             eventData.position,
             eventData.pressEventCamera) && slot.GetComponent<InventorySlots>().item_sprite.sprite == null;
     }
-
 }

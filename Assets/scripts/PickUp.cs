@@ -10,10 +10,8 @@ public class PickUp : MonoBehaviour
     {
         if (in_Range)
         {
-            Vector3 spritePosition = my_Player.transform.GetChild(0).position;
-            
+            Vector3 spritePosition = my_Player.transform.GetChild(0).position;        
             transform.position = Vector3.MoveTowards(transform.position, spritePosition, 1.5f * Time.deltaTime);
-
 
             if (Vector3.Distance(transform.position, spritePosition) < 0.5f)
             {
@@ -26,11 +24,8 @@ public class PickUp : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("pelne miejsce nie ma");
                     in_Range = false;
-                }
-
-                        
+                }                    
             }
         }
     }
@@ -47,5 +42,4 @@ public class PickUp : MonoBehaviour
             in_Range = true;
         }
     }
-
 }

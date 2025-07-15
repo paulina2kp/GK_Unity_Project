@@ -1,15 +1,9 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class CraftManager : MonoBehaviour
 {
-    //private ItemClass currItem;
-    //public List<Loot> currCraftItems = new List<Loot>();
     public List<string> recepieString = new List<string>();
     private List<List<string>> finalRecepiesList = new List<List<string>>();
     private List<string> currRecepie = new List<string>();
@@ -113,5 +107,4 @@ public class CraftManager : MonoBehaviour
     {
         return actualIndex;
     }
-
 }

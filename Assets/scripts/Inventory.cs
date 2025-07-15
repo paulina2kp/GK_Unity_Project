@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +30,6 @@ public class Inventory : MonoBehaviour
             Items.Add(new ItemClass(item));
             return true;
         }
-
         return false;
     }
 

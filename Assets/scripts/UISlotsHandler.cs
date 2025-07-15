@@ -1,7 +1,5 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UISlotsHandler : MonoBehaviour
 {
@@ -36,7 +34,5 @@ public class UISlotsHandler : MonoBehaviour
                 slotsList[i].currentItem = null;
             }
         }
-
     }
-
 }

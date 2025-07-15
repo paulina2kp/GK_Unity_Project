@@ -49,7 +49,7 @@ public class MineFunction : MonoBehaviour
         foreach (Loot one_item in final_loot)
         {
             Vector3 position = my_Player.transform.GetChild(0).position;
-            Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-1.5f, 1.5f), position.y, position.z + UnityEngine.Random.Range(0f, 1.5f));
+            Vector3 spawn_position = new Vector3(position.x + UnityEngine.Random.Range(-1.5f, 1.5f), position.y, position.z + UnityEngine.Random.Range(-0.5f, -1.0f));
             GameObject spawned_object = Instantiate(loot_prefab, spawn_position, Quaternion.identity);
             spawned_object.GetComponent<PickUp>().my_Player = my_Player;
             spawned_object.GetComponent<PickUp>().item = one_item;

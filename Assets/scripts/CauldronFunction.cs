@@ -16,7 +16,6 @@ public class CauldronFunction : MonoBehaviour
             my_Animator.SetTrigger("Make");
             potionToGive = potion;
             StartCoroutine(WaitAnimationAndDrop());
-
         }
     }
     private IEnumerator WaitAnimationAndDrop()

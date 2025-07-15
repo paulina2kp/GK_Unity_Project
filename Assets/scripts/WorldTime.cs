@@ -20,16 +20,13 @@ public class WorldTime : MonoBehaviour
     void Start()
     {
         skyboxMaterial = RenderSettings.skybox;
-
         currentTime = new TimeSpan(7, 0, 0);
         StartCoroutine(MinutePassed());
-
     }
 
     private void Update()
     {
         gameLight.color = lightGradient.Evaluate(PercentOFDay(currentTime));
-
         skyboxMaterial.SetColor("_SkyTint", skyTint.Evaluate(PercentOFDay(currentTime)));
         skyboxMaterial.SetColor("_GroundColor", skyTint.Evaluate(PercentOFDay(currentTime)));
 
@@ -38,7 +35,6 @@ public class WorldTime : MonoBehaviour
     private IEnumerator MinutePassed()
     {
         currentTime += TimeSpan.FromMinutes(1);             // add one minute
-        //Debug.Log("JEST TERAZ CZAS: " + currentTime);
         gameClock.SetText(currentTime.ToString(@"hh\:mm"));
         CheckIfNight();
         yield return new WaitForSeconds(oneMinuteLength);   // wait for one minute in game

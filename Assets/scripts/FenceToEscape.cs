@@ -3,7 +3,15 @@ using UnityEngine;
 public class FenceToEscape : MonoBehaviour
 {
     public GameObject my_Player;
+    [SerializeField]
+    private Loot magicStaff;
     private bool in_Range = false;
+    private PlayerController playerController;
+
+    private void Start()
+    {
+        playerController = my_Player.GetComponent<PlayerController>();
+    }
 
     public void Destroy()
     {
@@ -11,11 +19,14 @@ public class FenceToEscape : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        else
+        {
+            playerController.DropFromEQ(magicStaff);
+        }
     }
 
     private void OnTriggerEnter(Collider my_collider)
     {
-        Debug.Log("FENCE WCHODZE");
         if (my_collider.transform.root.gameObject == my_Player)
         {
             in_Range = true;

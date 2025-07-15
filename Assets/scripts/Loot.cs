@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "Loot", menuName = "Scriptable Objects/Loot")]
 public class Loot : ScriptableObject
@@ -11,7 +10,5 @@ public class Loot : ScriptableObject
     public bool isUsable;
 
     [NonSerialized] public Action onUse;
-    [NonSerialized] public Action onDrop;
-    //[NonSerialized] public Action onStore;
-    
+    [NonSerialized] public Action onDrop; 
 }

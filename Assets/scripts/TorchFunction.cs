@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TorchFunction : MonoBehaviour
@@ -44,6 +43,7 @@ public class TorchFunction : MonoBehaviour
             my_player.GetComponent<PlayerController>().safeSpace = true;
         }
     }
+
     private void OnTriggerExit(Collider my_collider)
     {
         if (my_collider.gameObject.Equals(my_player))

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,14 +5,12 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject my_Player;
-
     public List<ResourceClass> allResources;
 
     private Vector2 spawnRangeX = new Vector2(-130, 130);      //map borders 
     private Vector2 spawnRangeZ = new Vector2(-130, 130);
 
     public float minDistanceBetweenObjects = 1.5f;
-
     private List<List<GameObject>> allPoolObjects;         //for object pooling mechanic 
 
     void Start()
@@ -39,14 +36,12 @@ public class SpawnManager : MonoBehaviour
                 {
                     obj.GetComponent<CollectingMaterials>().my_Player = my_Player;
                     collectingMaterials.ResetResource(resource.defaultObjectLife);  //must reset so object_life always correct
-                    collectingMaterials.OnCollectedCallback = () => StartCoroutine(RespawnAfterDelay(index, obj, resource.respawnTime));
-                
+                    collectingMaterials.OnCollectedCallback = () => StartCoroutine(RespawnAfterDelay(index, obj, resource.respawnTime));  
                 }
                 else
                 {
                     Debug.LogWarning($"Prefab {resource.resourcePrefab.name} nie ma komponentu CollectingMaterials!");
                 }
-
             }
         }
     }
